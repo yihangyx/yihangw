@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="https://s41.ax1x.com/2026/03/26/peQ89k4.jpg" type="image/x-icon">
+<link rel="shortcut icon" href="https://s41.ax1x.com/2026/03/26/peQ89k4.jpg" type="image/x-icon">
+<title>奕涵 - 官方官网</title>
+<style>
+/* 全局样式 */
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
+
+/* 网页全屏背景图 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://s21.ax1x.com/2025/07/23/pVGl82t.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transition: background-image 0.8s ease;
+}
+
+/* 背景遮罩 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.1);
+  z-index: -1;
+  pointer-events: none;
+}
+
+html,body{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:30px 20px;
+  background: transparent !important;
+}
+
+/* 顶部官网标题 */
+.header{margin-bottom:30px;text-align:center}
+.header h1{
+    font-size:32px;
+    background:linear-gradient(90deg,#ff00cc,#3366ff,#00ff99,#ff9900,#ff00cc);
+    background-size: 400% 400%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 10px rgba(255, 255, 255, 0.8);
+    animation: textColor 8s ease infinite;
+    letter-spacing:2px;
+}
+
+@keyframes textColor {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* 主容器 */
+.main{max-width:800px;width:100%;display:flex;flex-direction:column;gap:20px}
+
+/* 卡片样式 */
+.box{
+    background:#fff !important;
+    opacity: 1 !important;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    padding:30px;
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+    position: relative;
+    z-index: 1;
+}
+.box:hover{
+    transform: translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* 卡片左侧文字 */
+.left{flex:1}
+.left h2{font-size:22px;margin-bottom:10px;color:#333}
+.left p{font-size:14px;color:#666;line-height:1.6}
+
+/* 卡片右侧按钮区 */
+.right{display:flex;flex-direction:column;gap:15px;white-space:nowrap}
+
+/* 按钮样式 */
+.btn{
+    padding:15px 30px;
+    background:linear-gradient(90deg,#e86ed0,#7998f2);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:500;
+    text-align:center;
+    transition: all 0.2s ease;
+    transform: scale(1);
+    cursor:pointer;
+    opacity: 1 !important;
+}
+.btn:hover{
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(232, 110, 208, 0.3);
+}
+
+/* 使用说明弹窗样式 */
+.modal{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+}
+.modal.show{
+    opacity:1;
+    pointer-events:auto;
+}
+.modal-content{
+    background:#fff;
+    width:90%;
+    max-width:700px;
+    border-radius:12px;
+    padding:40px;
+    max-height:80vh;
+    overflow-y:auto;
+    opacity: 1 !important;
+}
+.modal-content h3{
+    font-size:24px;
+    color:#e86ed0;
+    margin-bottom:20px;
+    text-align:center;
+}
+.modal-content p{
+    font-size:16px;
+    color:#555;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+.modal-content img{
+    max-width:100%;
+    border-radius:8px;
+    margin:15px 0;
+}
+.close-btn{
+    display:block;
+    margin:20px auto 0;
+    padding:12px 35px;
+    background:linear-gradient(90deg,#e86ed0,#7998f2);
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+/* 右侧悬浮按钮 */
+.right-float-btn {
+    position: fixed;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    width: 110px;
+    height: 50px;
+    background: linear-gradient(90deg,#e86ed0,#7998f2);
+    color: #fff;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: right 0.3s ease;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.2);
+}
+.right-float-btn:hover {
+    right: 0;
+}
+
+/* 反馈表单弹窗样式 */
+.feedback-modal{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s ease;
+    padding:20px;
+}
+.feedback-modal.show{
+    opacity:1;
+    pointer-events:auto;
+}
+.feedback-modal .modal-inner{
+    max-width:560px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+}
+.feedback-modal .close-feedback{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    width:40px;
+    height:40px;
+    background:linear-gradient(90deg,#e86ed0,#7998f2);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    font-size:18px;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(0,0,0,0.3);
+    z-index:10;
+}
+
+/* ========== 核心修复：倒计时和按钮交互样式 ========== */
+/* 反馈类型按钮高亮 */
+.tab {
+    position: relative;
+    overflow: hidden;
+}
+.tab.active {
+    background: linear-gradient(135deg,#6c5ce7,#fd79a8) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 12px rgba(108,92,231,0.2) !important;
+}
+.tab:hover {
+    border-color: #6c5ce7 !important;
+    color: #e8e8ef !important;
+}
+
+/* 发送按钮加载动画 */
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.submit-btn.loading .btn-text {
+    display: none !important;
+}
+.submit-btn.loading .btn-loading {
+    display: inline-block !important;
+}
+.submit-btn.loading .spinner {
+    display: inline-block !important;
+}
+
+/* 提示弹窗样式 */
+.toast {
+    background: rgba(26,29,39,0.95) !important;
+    color: #fff !important;
+    border-left: 4px solid #6c5ce7 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+}
+.toast.success {
+    border-left-color: #00d26a !important;
+}
+.toast.error {
+    border-left-color: #ff6b6b !important;
+}
+.toast.warn {
+    border-left-color: #ffc107 !important;
+}
+.toast.show {
+    transform: translateX(0) !important;
+}
+
+/* 冷却遮罩（修复display控制） */
+.cooldown-overlay {
+    display: none !important; /* 默认隐藏 */
+    position:absolute; 
+    top:0; 
+    left:0; 
+    right:0; 
+    bottom:0; 
+    background:rgba(15,17,23,0.92); 
+    border-radius:16px; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center; 
+    z-index:10; 
+    padding:20px;
+}
+.cooldown-overlay.show {
+    display: flex !important; /* 显示时用flex */
+}
+
+/* 旋转动画 */
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    .box{flex-direction:column;}
+    .right{width:100%;}
+    .btn{width:100%;padding:16px 0;}
+    .header h1{font-size:26px;}
+    .modal-content{padding:20px;}
+    .close-btn{padding:12px 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部官网标题 -->
+<div class="header">
+    <h1>奕涵小工具官网</h1>
+</div>
+
+<!-- 主内容区 -->
+<div class="main">
+    <div class="box">
+        <div class="left">
+            <h2></h2>
+            <p>温馨提示<br>本软件不针对任何游戏 仅仅是自动化操作的工具 用于日常操作挂机<br> <br> </p>
+        </div>
+        <div class="right">
+            <button class="btn" id="instructionBtn">使用说明书</button>
+            <a class="btn" href="https://qm.qq.com/q/mfJDoSnVE">购买地址</a>
+            <a class="btn" href="https://share.feijipan.com/s/Ur28FTZV">下载</a>
+            <a class="btn" href="https://sps.yy-gp.com/h3gj1/i.html">邮箱注册</a>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="left">
+            <h2>关于封号的问题</h2>
+            <p>使用须知<br>
+软件没有修改游戏任何数据，长时间使用可能会被判挂机被封 游戏每隔一段时间就会来一次大批量检测行为和检测历史战绩记录，请合理安排挂机时间，尽量不要一直挂机，导致禁赛。，建议每天挂机不超过六小时以上 使用默认你已经充份了解 风险自行承担</p>
+        </div>
+        <div class="right">
+            <a class="btn" href="">好的</a>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="left">
+            <h2>声明</h2>
+            <p>软件基于键鼠自动开发 100%的绝对绿色安全 存疑请立即删除<br>请严格遵守相关法律和规定 本软件不提供任何违法违规服务<br>不得利用本站从事任何违法活动 禁止未经授权转载、篡改网站内容<br>网站内容可能随产品更新而变化 不保证所有信息完全准确或及时更新<br>继续使用默认同意以上所有内容 √</p>
+        </div>
+    </div>
+</div>
+
+<!-- 右侧悬浮按钮 -->
+<button class="right-float-btn" id="openFeedbackBtn">问题反馈</button>
+
+<!-- 反馈表单弹窗 -->
+<div class="modal feedback-modal" id="feedbackModal">
+    <div class="modal-inner" style="position:relative;">
+        <button class="close-feedback" id="closeFeedbackBtn">×</button>
+        
+        <div style="background:#1a1d27; border-radius:16px; padding:28px; border:1px solid #2a2e3d;">
+            <div style="text-align:center; margin-bottom:32px;">
+                <div style="width:56px;height:56px; background:linear-gradient(135deg,#6c5ce7,#fd79a8); border-radius:16px; display:inline-flex; align-items:center; justify-content:center; font-size:26px; margin-bottom:16px; box-shadow:0 8px 24px rgba(108,92,231,0.3);">✉️</div>
+                <h1 style="font-size:24px; font-weight:700; margin-bottom:8px; color:#e8e8ef;">问题反馈@订单查询@售后详情</h1>
+                <p style="color:#8b8fa3; font-size:14px; line-height:1.6;">可选、匿名地发送反馈，无需透露身份</p>
+            </div>
+
+            <div style="position:relative;">
+                <div class="cooldown-overlay" id="cooldownOverlay">
+                    <div class="clock" id="cooldownClock" style="width:80px;height:80px; border:3px solid #2a2e3d; border-top-color:#6c5ce7; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#6c5ce7; margin-bottom:16px; animation:spin 3s linear infinite;">180</div>
+                    <div class="msg" id="cooldownMsg" style="font-size:14px; color:#8b8fa3; text-align:center; line-height:1.6;">发送过于频繁，请等待 <strong id="cooldownSec" style="color:#e8e8ef;">180</strong> 秒后重试</div>
+                    <div class="daily-info" id="dailyInfo" style="margin-top:12px; font-size:12px; color:#8b8fa3; opacity:0.6;"></div>
+                </div>
+
+                <form id="feedbackForm" onsubmit="return handleSubmit(event)">
+                    <div style="margin-bottom:18px;">
+                        <label style="display:block; font-size:13px; font-weight:600; color:#8b8fa3; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">反馈类型</label>
+                        <div style="display:flex; gap:8px; margin-bottom:20px;">
+                            <button type="button" class="tab active" data-value="问题反馈" onclick="selectTab(this)" style="flex:1; padding:11px 8px; background:#14161e; border:1px solid #2a2e3d; border-radius:10px; color:#8b8fa3; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; text-align:center;">问题反馈</button>
+                            <button type="button" class="tab" data-value="订单查询" onclick="selectTab(this)" style="flex:1; padding:11px 8px; background:#14161e; border:1px solid #2a2e3d; border-radius:10px; color:#8b8fa3; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; text-align:center;">订单查询</button>
+                            <button type="button" class="tab" data-value="售后问题" onclick="selectTab(this)" style="flex:1; padding:11px 8px; background:#14161e; border:1px solid #2a2e3d; border-radius:10px; color:#8b8fa3; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.2s; text-align:center;">售后问题</button>
+                        </div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label style="display:block; font-size:13px; font-weight:600; color:#8b8fa3; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">你的邮箱用于回复</label>
+                        <input type="text" id="senderName" placeholder="匿名用户" maxlength="50" style="width:100%; background:#14161e; border:1px solid #2a2e3d; border-radius:10px; padding:12px 16px; color:#e8e8ef; font-size:14px; outline:none; transition:border-color 0.2s, box-shadow 0.2s;">
+                        <div style="font-size:11px; color:#8b8fa3; margin-top:6px; opacity:0.7;">邮箱仅用于回复问题</div>
+                    </div>
+                    <div style="margin-bottom:18px;">
+                        <label style="display:block; font-size:13px; font-weight:600; color:#8b8fa3; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">反馈内容</label>
+                        <textarea id="message" placeholder="请输入你的反馈内容..." required style="width:100%; background:#14161e; border:1px solid #2a2e3d; border-radius:10px; padding:12px 16px; color:#e8e8ef; font-size:14px; min-height:160px; line-height:1.7; outline:none; transition:border-color 0.2s, box-shadow 0.2s; resize:vertical;"></textarea>
+                        <div style="font-size:11px; color:#8b8fa3; margin-top:6px; opacity:0.7;"><span id="charCount">0</span> / 5000 字符 · Ctrl+Enter 快捷发送</div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn" style="width:100%; padding:14px; background:linear-gradient(135deg,#6c5ce7,#a855f7); color:white; border:none; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer; transition:all 0.3s;">
+                        <span class="spinner" style="display:none; width:18px; height:18px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.8s linear infinite; margin-right:8px;"></span>
+                        <span class="btn-text">发送反馈</span>
+                        <span class="btn-loading" style="display:none;">发送中...</span>
+                    </button>
+                </form>
+            </div>
+            <div style="text-align:center; margin-top:24px; font-size:12px; color:#8b8fa3; opacity:0.5;">2026 奕涵 版权所有</div>
+        </div>
+    </div>
+</div>
+
+<!-- 使用说明弹窗 -->
+<div class="modal" id="instructionModal">
+    <div class="modal-content">
+        <h3>奕涵 - 使用说明书</h3>
+        
+        <p style="font-size:18px;color:#e86ed0;font-weight:bold;">一、下载步骤</p>
+        <p>1. 下载对应版本的解压工具和版本</p>
+        <p>2. 双击「自动提货软件.exe」验证解压，</p>
+        <p>3. 选择「版本文件」输入卡密</p>
+        
+        <p style="font-size:18px;color:#e86ed0;font-weight:bold;">二、使用教程</p>
+        <p>启动后效果如下：</p>
+        <img src="" alt="程序启动截图">
+        
+        <p>1. </p>
+        <p>2. </p>
+        <p>3. </p>
+        
+        <p style="font-size:18px;color:#e86ed0;font-weight:bold;">三、常见问题</p>
+        <p>Q：启动提示报错？<br>A：关闭杀毒软件，以管理员身份运行</p>
+        <p>Q：取色不精准？<br>A：调整游戏分辨率为1920*1080，关闭全屏</p>
+
+        <button class="close-btn" id="closeModal">关闭</button>
+    </div>
+</div>
+
+<!-- 提示框 -->
+<div class="toast" id="toast" style="position:fixed; top:24px; right:24px; padding:14px 20px; border-radius:12px; font-size:14px; font-weight:500; z-index:1000; transform:translateX(120%); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-width:360px;"></div>
+
+<script>
+// 说明弹窗交互
+const instructionBtn = document.getElementById('instructionBtn');
+const instructionModal = document.getElementById('instructionModal');
+const closeModal = document.getElementById('closeModal');
+
+instructionBtn.addEventListener('click', () => {
+    instructionModal.classList.add('show');
+});
+closeModal.addEventListener('click', () => {
+    instructionModal.classList.remove('show');
+});
+instructionModal.addEventListener('click', (e) => {
+    if(e.target === instructionModal) instructionModal.classList.remove('show');
+});
+
+// 反馈表单弹窗控制
+const openFeedbackBtn = document.getElementById('openFeedbackBtn');
+const feedbackModal = document.getElementById('feedbackModal');
+const closeFeedbackBtn = document.getElementById('closeFeedbackBtn');
+
+openFeedbackBtn.addEventListener('click', () => {
+    feedbackModal.classList.add('show');
+});
+closeFeedbackBtn.addEventListener('click', () => {
+    feedbackModal.classList.remove('show');
+});
+feedbackModal.addEventListener('click', (e) => {
+    if(e.target === feedbackModal) feedbackModal.classList.remove('show');
+});
+
+// 反馈表单核心JS（修复倒计时和发送bug）
+var W3F_KEY = '12796d4d-8f6e-481a-ba8a-dd4253cc551a';
+var selectedType = '问题反馈';
+var COOLDOWN = 60;
+var DAILY_MAX = 2;
+var cooldownTimer = null;
+
+function getFingerprint(){var c=document.createElement('canvas');var ctx=c.getContext('2d');ctx.textBaseline='top';ctx.font='14px Arial';ctx.fillText('fp_test_'+navigator.userAgent,2,2);var canvas=c.toDataURL().slice(-32);var scr=window.screen.width+'x'+window.screen.height+'x'+window.screen.colorDepth;var tz=new Date().getTimezoneOffset();var lang=navigator.language;var raw=canvas+'|'+scr+'|'+tz+'|'+lang+'|'+navigator.hardwareConcurrency;var hash=0;for(var i=0;i<raw.length;i++){var chr=raw.charCodeAt(i);hash=((hash<<5)-hash)+chr;hash|=0;}return 'fp_'+Math.abs(hash).toString(36);}
+
+var cachedIP=localStorage.getItem('_fb_ip');var ipPromise=null;
+function getIP(){if(cachedIP)return Promise.resolve(cachedIP);ipPromise=fetch('https://api.ipify.org?format=json').then(function(r){return r.json();}).then(function(d){cachedIP=d.ip;localStorage.setItem('_fb_ip',cachedIP);return cachedIP;}).catch(function(){return 'unknown';});return ipPromise;}
+
+var STORE_KEY='_fb_limit';
+function getLimitData(){try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return{}}}
+function setLimitData(data){localStorage.setItem(STORE_KEY,JSON.stringify(data));}
+function getToday(){return new Date().toISOString().slice(0,10);}
+
+// 修复：检查冷却逻辑
+function checkLimit(){
+    var data=getLimitData();
+    var now=Date.now();
+    var today=getToday();
+    
+    // 每天重置计数
+    if(data.date!==today){
+        setLimitData({date:today,count:0,lastSend:0});
+        return{ok:true};
+    }
+    
+    // 计算距离上次发送的时间差（秒）
+    var elapsed=(now-(data.lastSend||0))/1000;
+    
+    // 冷却中
+    if(elapsed<COOLDOWN&&data.lastSend>0){
+        var remaining=Math.ceil(COOLDOWN-elapsed);
+        return{ok:false,reason:'cooldown',seconds:remaining,used:data.count,max:DAILY_MAX};
+    }
+    
+    // 每日次数超限
+    if(data.count>=DAILY_MAX){
+        return{ok:false,reason:'daily',used:data.count,max:DAILY_MAX};
+    }
+    
+    // 可以发送
+    return{ok:true,used:data.count,max:DAILY_MAX};
+}
+
+// 修复：记录发送时间
+function recordSend(){
+    var data=getLimitData();
+    var today=getToday();
+    
+    if(data.date!==today){
+        data={date:today,count:0,lastSend:0};
+    }
+    
+    data.count++;
+    data.lastSend=Date.now(); // 记录当前时间戳
+    data.fingerprint=getFingerprint();
+    setLimitData(data);
+}
+
+// 修复：倒计时逻辑（核心bug修复）
+function showCooldown(remaining,used){
+    var overlay=document.getElementById('cooldownOverlay');
+    var clock=document.getElementById('cooldownClock');
+    var sec=document.getElementById('cooldownSec');
+    var msg=document.getElementById('cooldownMsg');
+    var info=document.getElementById('dailyInfo');
+    
+    // 先清除旧的定时器，避免多个定时器冲突
+    if(cooldownTimer) clearInterval(cooldownTimer);
+    
+    // 显示冷却遮罩
+    overlay.classList.add('show');
+    clock.textContent=remaining;
+    sec.textContent=remaining;
+    info.textContent='今日已发送 '+used+'/'+DAILY_MAX+' 封';
+    
+    // 启动倒计时定时器
+    cooldownTimer=setInterval(function(){
+        remaining--;
+        clock.textContent=remaining;
+        sec.textContent=remaining;
+        
+        // 倒计时结束，隐藏遮罩
+        if(remaining<=0){
+            clearInterval(cooldownTimer);
+            overlay.classList.remove('show');
+            checkAndShow(); // 重新检查状态
+            return;
+        }
+    },1000); // 每秒执行一次
+}
+
+// 修复：每日限额提示
+function showDailyLimit(used){
+    var overlay=document.getElementById('cooldownOverlay');
+    var clock=document.getElementById('cooldownClock');
+    var msg=document.getElementById('cooldownMsg');
+    var info=document.getElementById('dailyInfo');
+    var sec=document.getElementById('cooldownSec');
+    
+    overlay.classList.add('show');
+    clock.textContent='⛔';
+    clock.style.animation='none';
+    clock.style.borderTopColor='#ff6b6b';
+    clock.style.color='#ff6b6b';
+    clock.style.borderColor='#ff6b6b';
+    msg.innerHTML='您的反馈我已经收到了会尽快回复请勿重复发送（<strong>'+DAILY_MAX+'封</strong>）<br>请明天再试';
+    info.textContent='每日限额 '+DAILY_MAX+' 封 · 每日 00:00 自动重置';
+}
+
+// 修复：页面加载时检查状态
+function checkAndShow(){
+    var status=checkLimit();
+    if(!status.ok){
+        if(status.reason==='cooldown'){
+            showCooldown(status.seconds,status.used);
+        }else if(status.reason==='daily'){
+            showDailyLimit(status.used);
+        }
+    } else {
+        // 如果可以发送，确保遮罩隐藏
+        document.getElementById('cooldownOverlay').classList.remove('show');
+    }
+}
+
+// 初始化检查
+checkAndShow();
+
+// 反馈类型切换
+function selectTab(el){
+    document.querySelectorAll('.tab').forEach(function(t){
+        t.classList.remove('active');
+    });
+    el.classList.add('active');
+    selectedType=el.dataset.value;
+}
+
+// 字符计数
+var messageEl=document.getElementById('message');
+var charCount=document.getElementById('charCount');
+messageEl.addEventListener('input',function(){
+    charCount.textContent=messageEl.value.length;
+    charCount.style.color=messageEl.value.length>4500?'#ff6b6b':'#8b8fa3';
+});
+
+// Ctrl+Enter快捷发送
+messageEl.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){
+        e.preventDefault();
+        document.getElementById('feedbackForm').requestSubmit();
+    }
+});
+
+// 提示弹窗
+function showToast(msg,type){
+    var t=document.getElementById('toast');
+    t.textContent=msg;
+    t.className='toast '+(type||'success')+' show';
+    setTimeout(function(){
+        t.classList.remove('show');
+    },4000);
+}
+
+// 修复：提交表单逻辑
+async function handleSubmit(e){
+    e.preventDefault();
+    
+    // 先检查发送限制
+    var status=checkLimit();
+    if(!status.ok){
+        if(status.reason==='cooldown'){
+            showCooldown(status.seconds,status.used);
+            showToast('发送太频繁，请等待 '+status.seconds+' 秒','warn');
+        }else{
+            showDailyLimit(status.used);
+            showToast('今日已发满 '+DAILY_MAX+' 封，明天再来','error');
+        }
+        return false;
+    }
+    
+    // 验证内容
+    var senderName=document.getElementById('senderName').value.trim()||'匿名用户';
+    var message=messageEl.value.trim();
+    if(!message){
+        showToast('请输入反馈内容','error');
+        return false;
+    }
+    
+    // 禁用发送按钮，显示加载
+    var btn=document.getElementById('submitBtn');
+    btn.disabled=true;
+    btn.classList.add('loading');
+    
+    try{
+        // 获取IP（用于记录）
+        await getIP();
+        
+        // 发送请求到web3forms
+        var res=await fetch('https://api.web3forms.com/submit',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+                access_key:W3F_KEY,
+                subject:'['+selectedType+'] 匿名反馈',
+                from_name:senderName,
+                反馈类型:selectedType,
+                称呼:senderName,
+                内容:message,
+                时间:new Date().toLocaleString('zh-CN'),
+                _template:'table'
+            })
+        });
+        
+        var data=await res.json();
+        
+        // 发送成功
+        if(data.success){
+            recordSend(); // 记录发送时间
+            showToast('✅ 反馈发送成功！','success');
+            
+            // 重置表单
+            document.getElementById('feedbackForm').reset();
+            charCount.textContent='0';
+            
+            // 重置反馈类型为默认
+            document.querySelectorAll('.tab').forEach(function(t,i){
+                t.classList.toggle('active',i===0);
+            });
+            selectedType='问题反馈';
+            
+            // 检查并显示冷却
+            checkAndShow();
+        }else{
+            throw new Error(data.message||'发送失败');
+        }
+    }catch(err){
+        showToast('⚠️ '+err.message,'error');
+    }finally{
+        // 恢复按钮状态
+        btn.disabled=false;
+        btn.classList.remove('loading');
+    }
+    
+    return false;
+}
+</script>
+</body>
+</html>
